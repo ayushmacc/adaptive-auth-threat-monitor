@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="dashboard-wrapper">
+  <h1>🛡️ Security Operations Dashboard</h1>
+
+  <section class="panel">
+    <h2>📤 Export Audit Logs</h2>
+    <div class="export-buttons">
+      <a href="/admin/export/users"><button>Export Users Logs (CSV)</button></a>
+      <a href="/admin/export/threats"><button class="danger">Export Threat Logs (CSV)</button></a>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2>👤 Registered Users</h2>
+    <table>
+      <tr><th>Email</th><th>Trust</th><th>IP</th><th>Behavior</th></tr>
+      {% for u in users %}
+      <tr>
+        <td>{{ u[0] }}</td>
+        <td>{{ u[1] }}</td>
+        <td>{{ u[2] }}</td>
+        <td>{{ u[3] }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </section>
+
+  <section class="panel danger-panel">
+    <h2>🚨 Threat Activity</h2>
+    <table>
+      <tr><th>Email</th><th>IP</th><th>Threat</th><th>Reason</th></tr>
+      {% for t in threats %}
+      <tr>
+        <td>{{ t[0] }}</td>
+        <td>{{ t[1] }}</td>
+        <td>{{ t[2] }}</td>
+        <td>{{ t[3] }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </section>
+
+  <section class="panel">
+    <h2>⛔ Block Email or IP</h2>
+    <form method="post" action="/admin/block" class="block-form">
+      <input name="value" placeholder="Email or IP" required>
+      <select name="type">
+        <option value="email">Email</option>
+        <option value="ip">IP</option>
+      </select>
+      <button class="danger">Block</button>
+    </form>
+  </section>
+
+  <section class="panel">
+    <h2>🚫 Blocked Entities</h2>
+    <ul>
+      {% for b in blocked %}
+        <li>{{ b[0] }}</li>
+      {% endfor %}
+    </ul>
+  </section>
+
+  <a href="/logout"><button class="danger logout-btn">Logout</button></a>
+</div>
+
+</body>
+</html>

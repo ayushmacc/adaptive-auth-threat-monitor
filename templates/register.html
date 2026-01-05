@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Secure Login</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="auth-wrapper">
+  <div class="auth-card">
+    <h1>🔐 Secure Access</h1>
+    <p class="subtitle">Zero-Trust Authentication Portal</p>
+
+    <form method="post">
+      <label>Email Address</label>
+      <input type="email" name="email" placeholder="you@example.com" required>
+
+      <label>Password</label>
+      <input type="password" name="password" placeholder="••••••••" required>
+
+      <button type="submit">Login Securely</button>
+    </form>
+
+    <div class="auth-links">
+      <a href="/register">Create Account</a>
+      <a href="/admin">Admin Panel</a>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
